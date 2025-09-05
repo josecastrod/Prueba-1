@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title><!--Josefina Castro--></title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.0.4/p5.min.js" integrity="sha512-rOTpdy9fXlcLeLxPj5H4pof51FAx2lVK8Soexk8yTek9wrenwm56MKT2VddH8GCDd4a2js2i4GwezlUkbGdVQg==" crossorigin="anonymous" referrerpolicy="no-referrer"
+        ></script>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body id="cuerpo">
+        <main id="bloque">
+             <img src="imagen.1.jpg" with= 50px ; hight= 30px>
+
+            <!--editar lo que sigue-->
+            <h1>¡Hola mundo!</h1>
+            <h2>Me llamo <a href="https://github.com/josecastrod" target="_blank">Josecastrod</a></h2>
+            <p>Soy Soy estudiante de diseño de 5to año</p>
+            <!--no sigas editando desde acá-->
+            <p>Esta es mi primera prueba de <a href="https://github.com/profesorfaco/opr" target="_blank">Introducción al Desarrollo Web desde el Diseño</a>, un Optativo de Profundización de la <a href="https://diseno.uc.cl/" target="_blank">Escuela de Diseño UC</a>.</p>
+            <p>Aquí puedes echarle un vistazo a las páginas que preparé usando <code>HTML</code>, <code>CSS</code> y <code>p5.js</code>, una bibliteca de <code>JavaScript</code>:</p>
+            <nav>
+                <a href="index.html">Portada</a> 
+                <a href="page-1.html" class="active">Primera interior</a> 
+                <a href="page-2.html">Segunda interior</a>
+            </nav>
+
+            <p>En la primera página interior puedes ver un emoji siguiendo al mouse, con algo de demora por un <code>lerp()</code>, pero sin dejar huella. Al mismo tiempo, el matiz de fondo cambia según la posición del mouse en la horizontal, al tiempo que la saturación cambia por la posición del mouse en la vertical.</p>
+        </main>
+
+        <script>
+        var canvas;
+
+            var canvas;
+        let x = 0, y = 0;
+
+        function setup() {
+          canvas = createCanvas(windowWidth, windowHeight);
+          canvas.parent("cuerpo");
+          canvas.position(0,0);
+          canvas.style('z-index','-1');
+
+          colorMode(HSB, 360, 100, 100);
+          textAlign (CENTER, CENTER);
+          textSize(100);
+          noStroke();
+        }
+
+        function draw() {
+          const h = map(mouseX, 0, width, 0, 360);
+          const s = map(mouseY, 0, height, 0, 200);
+          background(h, s, 100)  // brillo al 100
+
+          // que siga el mouse con inercia (lerp)
+          x = lerp(x, mouseX, 0.1);
+          y = lerp(y, mouseY, 0.1);
+
+          fill(0, 0, 0); //negro
+          text("🪼", x, y);
+        }
+
+        function windowResized() {
+          resizeCanvas(windowWidth, windowHeight);
+        }
+        </script>
+    </body>
+</html>
